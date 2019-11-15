@@ -1,35 +1,51 @@
 footprint: [[0.35, -0.3], [0.35, 0.3], [-0.35,0.3], [-0.35, -0.3]]
+footprint_padding: 0.03
+transform_tolerance: 2.0
 
-publish_frequency: 1.0
-
-inflation_layer:
-  inflation_radius: 0.3
-
+static_layer:
+  map_topic: /map
+  subscribe_to_updates: true
+  
 obstacle_layer:
   obstacle_range: 2.5
-  raytrace_range: 5.5
+  raytrace_range: 3
+  track_unknown_space: true
   observation_sources: front_laser rear_laser front_rgbd_to_scan
+  
   front_laser: 
-    sensor_frame: summit_xl_front_laser_link
+    sensor_frame: /rbkairos_a/front_laser_link
     data_type: LaserScan
-    topic: front_laser/scan
+    topic: /rbkairos_a/front_laser/scan
     marking: true
     clearing: true
-  rear_laser: 
-    sensor_frame: summit_xl_rear_laser_link
+    min_obstacle_height: 0.0
+    max_obstacle_height: 5.0
+    
+  rear_laser:
+    sensor_frame: /rbkairos_a/rear_laser_link
     data_type: LaserScan
-    topic: rear_laser/scan
+    topic: /rbkairos_a/rear_laser/scan
     marking: true
     clearing: true
-
+    min_obstacle_height: 0.0
+    max_obstacle_height: 5.0
+    
 rgbd_obstacle_layer:
   obstacle_range: 2.5
-  raytrace_range: 5.5
+  raytrace_range: 3
+  track_unknown_space: true
   observation_sources: front_rgbd_to_scan
+  
   front_rgbd_to_scan:
     data_type: LaserScan
-    topic: front_rgbd_camera/point_cloud_scan_filtered
+    topic: /rbkairos_a/front_rgbd_camera/point_cloud_scan_filtered
     marking: true
     clearing: true
+    min_obstacle_height: 0.0
+    max_obstacle_height: 5.0
     observation_persistence: 5.0
-
+    
+inflation_layer:
+  cost_scaling_factor: 1.0
+  inflation_radius: 0.55
+  
