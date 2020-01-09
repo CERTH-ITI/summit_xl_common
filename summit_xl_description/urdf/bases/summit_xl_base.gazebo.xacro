@@ -47,7 +47,8 @@
 	      <odometryFrame>${prefix}odom</odometryFrame>
 	      <odometryRate>50.0</odometryRate>
 	      <robotBaseFrame>${prefix}base_footprint</robotBaseFrame>
-	      <publishTF>${publish_tf}</publishTF>     
+	      <publishTF>${publish_tf}</publishTF>    
+        <disablePitchAndRoll>true</disablePitchAndRoll>
 	    </plugin>
 	  </gazebo>
   </xacro:macro>
