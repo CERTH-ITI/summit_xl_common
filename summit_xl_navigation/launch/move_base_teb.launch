@@ -25,6 +25,7 @@
   <node pkg="move_base" type="move_base" respawn="false" name="move_base">
   	<remap from="cmd_vel" to="$(arg cmd_vel_topic)" />
 	<remap from="odom" to="$(arg odom_topic)" />
+	<remap from="map" to="/map"/>
 	
 	<!-- Move base params -->
 	<rosparam file="$(arg config_path)/move_base_params.yaml" command="load" />
